@@ -10,12 +10,13 @@ from sklearn.metrics import precision_recall_fscore_support, accuracy_score
 
 
 # Calculates the accuracy, precision, recall, and f1-score score
-def calculate_results(y_true, y_pred):
+def calculate_results(name, y_true, y_pred):
     accuracy = accuracy_score(y_true, y_pred)
     precision, recall, fscore, _ = precision_recall_fscore_support(y_true,
                                                                    y_pred,
                                                                    average='weighted')
     return {
+        'Model Name': name,
         'Accuracy score': accuracy,
         'Precision score': precision,
         'Recall score': recall,
