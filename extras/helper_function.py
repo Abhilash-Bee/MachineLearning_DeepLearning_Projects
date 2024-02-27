@@ -211,7 +211,7 @@ def walk_through_directory(filepath: str) -> None:
 
 
 # Create the tensorboard callback
-def tensorboard_callbacks(directory: str, experiment_name: str) -> object:
+def tensorboard(experiment_name: str) -> object:
   """
   Creates a tensorboard callback and provides message if the tensorboard callback
   is successfully saved in the path.
@@ -224,7 +224,7 @@ def tensorboard_callbacks(directory: str, experiment_name: str) -> object:
   Tensorboard object
   """
 
-  log_dir = directory + '/' + experiment_name + '/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
+  log_dir = 'TensorBoard/' + experiment_name + '/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
   callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir)
   print(f'Saving the tensorboard callbacks in {log_dir}')
   return callback
@@ -232,23 +232,22 @@ def tensorboard_callbacks(directory: str, experiment_name: str) -> object:
 
 
 # Create the tensorflow ModelCheckpoint
-def tensorflow_modelcheckpoint(directory: str, experiment_name: str, str='val_acc', sbo=False):
+def modelcheckpoint(experiment_name: str, monitor='val_acc', sbo=True):
   """
   Creates a model checkpoint and saves in the provided directory with experiment_name
   as sub-directory with another sub-directory as datetime.
 
   Args:
-  directory - folder name of the tensorboard model checkpoint
   experiment_name - sub-folder inside the directory of the current experiment
 
   Returns:
   ModelCheckpoint object
   """
 
-  filepath = directory + '/' + experiment_name + '/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
+  filepath = 'Modelcheckpoint/' + experiment_name + '/' + datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
   print(f'Path of the checkpoint: {filepath}')
   return tf.keras.callbacks.ModelCheckpoint(filepath=filepath, 
                                             verbose=1,
-                                            str=str,
+                                            monitor=str,
                                             save_weights_only=True,
                                             save_best_only=sbo)
