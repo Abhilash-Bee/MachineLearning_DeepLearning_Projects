@@ -232,7 +232,7 @@ def tensorboard(experiment_name: str) -> object:
 
 
 # Create the tensorflow ModelCheckpoint
-def modelcheckpoint(experiment_name: str, monitor='val_acc', sbo=True):
+def modelcheckpoint(experiment_name: str, monitor='val_accuracy', sbo=True):
   """
   Creates a model checkpoint and saves in the provided directory with experiment_name
   as sub-directory with another sub-directory as datetime.
