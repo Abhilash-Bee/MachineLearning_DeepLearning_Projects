@@ -248,6 +248,6 @@ def modelcheckpoint(experiment_name: str, monitor='val_accuracy', sbo=True):
   print(f'Path of the checkpoint: {filepath}')
   return tf.keras.callbacks.ModelCheckpoint(filepath=filepath, 
                                             verbose=1,
-                                            monitor=str,
+                                            monitor=monitor,
                                             save_weights_only=True,
                                             save_best_only=sbo)
